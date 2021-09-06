@@ -1,3 +1,6 @@
+// where are the creatures?
+// add monochrome pixels
+
 int bg1 = 70;
 int bg2 = 100;
 
@@ -93,8 +96,10 @@ void draw(){
       if(.14 < random(1)){ ch = mh; } else { ch = oh; }
       ch = shift255(ch, random(-chv / 3, chv / 3));
     }
+    if(.4 > random(1)){ cs = 0; }  // chance for monochrome
     fill(ch, cs, cb, o);
   }
+  
 
   if(i % (c * 5) == 0){
     x = int(width / 2 / pos) * pos;
