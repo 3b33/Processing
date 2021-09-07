@@ -37,7 +37,8 @@ int m, m2, m3;
 
 int xd;
 int yd;
-int c = (int) random(400,700);
+//int c = (int) random(600,1000);
+int c = 5000;
 float chv = 30;
 float csv = 128; // color sat variability
 float cbv = 100;
@@ -91,12 +92,13 @@ void draw(){
       ch = shift255(ch, random(-chv / 1.5, chv / 1.5));
     }
     else { // bright
-      cs = random(80, 150);
-      cb = random(128, 210);
+      cs = random(80, 140);
+      cb = random(128, 220);
       if(.14 < random(1)){ ch = mh; } else { ch = oh; }
       ch = shift255(ch, random(-chv / 3, chv / 3));
     }
     if(.4 > random(1)){ cs = 0; }  // chance for monochrome
+    noStroke();
     fill(ch, cs, cb, o);
   }
   
@@ -105,20 +107,20 @@ void draw(){
     x = int(width / 2 / pos) * pos;
     y = (int) (random(200, height - 200) / pos);
     y = y * pos;
-    c = (int) random(400,700);
+    //c = (int) random(1000,5000);
   }
   if(i > c * 150) {
     mh = shift255(mh, random(30,225));
     oh = shift255(mh, random(108,148));
     i = 1;
-    save(timestamp("screenshots//SquiqqlePixels_", ".png"));
+    saveImage();
   }
   if(mousePressed) {
     //x = int(mouseX / pos) * pos;
     //y = int(mouseY / pos) * pos;
     //fill(get(mouseX, mouseY), o);
     //i = int(i / c) * c;
-    save(timestamp("screenshots//SquiqqlePixels_", ".png"));
+    saveImage();
   }
   rect(x, y, pos, pos);
   rect(m, y, pos, pos);
@@ -131,11 +133,15 @@ void draw(){
     rect(pos * ps, pos * ps, pos * ps, pos * ps);
     fill(oh, 255, 255);
     rect(pos * ps * 2 + 1, pos * ps, pos * ps, pos * ps);
-    fill(ch, cs, cb, 80);
+    fill(ch, cs, cb, o);
   }
 }
 
 static final String timestamp(final String name, final String ext) {
   return name + "-" + year() + nf(month(), 2) + nf(day(), 2) +
     "-" + nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2) + ext;
+}
+
+void saveImage() {
+  save(timestamp("screenshots//SquibblePixels_", ".png"));
 }
