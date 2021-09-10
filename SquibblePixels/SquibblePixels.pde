@@ -17,33 +17,34 @@ void setup(){
   colorMode(HSB, 255);
   fill(255, 40);
   frameRate(1000);
+  noSmooth();
 }
 
 
 int i = 0;
 int pos = 5;
-int y = int(height / 2 / pos + random(-height / 2, height / 2)) * pos;
-int x = int(width / 2 / pos) * pos ;
-int y2 = int(height / 2 / pos + random(-height / 2, height / 2)) * pos;
-int y3 = int(height / 2 / pos + random(-height / 2, height / 2)) * pos;
+int y = int((height / 2 + random(-height / 2, height / 2)) / pos) * pos;
+int x = int(width / 2 / pos) * pos;
+int y2 = int((height / 2 + random(-height / 2, height / 2)) / pos) * pos;
+int y3 = int((height / 2 + random(-height / 2, height / 2)) / pos) * pos;
 int x2 = x;
 int x3 = x;
 int rs =3;
 int mpos = 10;
 int s = 0;
-int o = 60;
+int o = 70;
 int bm = 2;
 int m, m2, m3;
 
 int xd;
 int yd;
 //int c = (int) random(600,1000);
-int c = 5000;
+int c = 1000;
 float chv = 30;
 float csv = 128; // color sat variability
-float cbv = 100;
+float cbv = 40;
 float ch, cs, cb;
-int ps = 3;      // palette size (multiplier of pos)
+int ps = 2;      // palette size (multiplier of pos)
 
 float mh = random(255);        // master hue
 
@@ -84,18 +85,20 @@ void draw(){
   i=i+1;
   
   if(i % c==0){ 
-    if(0.18 < random(1)){  // number = change for bright
+    if(0.2 < random(1)){  // number = change for bright
       // dark
       cs = random(0, csv);
-      cb = random(0, cbv / 3 * 2);
+      cb = random(0, cbv);
       if(.7 < random(1)){ ch = mh; } else { ch = oh; }
       ch = shift255(ch, random(-chv / 1.5, chv / 1.5));
+      o = 70;
     }
     else { // bright
       cs = random(80, 140);
-      cb = random(128, 220);
+      cb = 255;//random(150, 220);
       if(.14 < random(1)){ ch = mh; } else { ch = oh; }
       ch = shift255(ch, random(-chv / 3, chv / 3));
+      o = 30;
     }
     if(.4 > random(1)){ cs = 0; }  // chance for monochrome
     noStroke();
