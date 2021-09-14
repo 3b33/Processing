@@ -40,7 +40,7 @@ int xd;
 int yd;
 //int c = (int) random(600,1000);
 int c = 1000;
-float chv = 30;
+float chv = 60;
 float csv = 128; // color sat variability
 float cbv = 40;
 float ch, cs, cb;
@@ -94,13 +94,13 @@ void draw(){
       o = 70;
     }
     else { // bright
-      cs = random(80, 140);
-      cb = 255;//random(150, 220);
+      cs = random(0, 130);
+      cb = random(128, 255);
       if(.14 < random(1)){ ch = mh; } else { ch = oh; }
-      ch = shift255(ch, random(-chv / 3, chv / 3));
-      o = 30;
+      ch = shift255(ch, random(-chv, chv));
+      o = 60;
     }
-    if(.4 > random(1)){ cs = 0; }  // chance for monochrome
+    //if(.4 > random(1)){ cs = 0; }  // chance for monochrome
     noStroke();
     fill(ch, cs, cb, o);
   }
