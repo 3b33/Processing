@@ -43,6 +43,8 @@ int c = 1000;
 float chv = 60;
 float csv = 128; // color sat variability
 float cbv = 40;
+float scb;
+float bi = 1000; // brightness variance loop size, every i
 float ch, cs, cb;
 int ps = 2;      // palette size (multiplier of pos)
 
@@ -83,26 +85,23 @@ void draw(){
   m3 = int((width - x3) / pos) * pos;
   
   i=i+1;
+
+  cb = i%bi;
+  if(cb>bi/2){cb=bi-cb;}
+  scb = cb;
+  cb = cb / (bi / 255);
+  //for(int i = 0; i < cb; i+=20){
+  //  if(scb < i){cb*=.9;}
+  //}
   
   if(i % c==0){ 
-    if(0.2 < random(1)){  // number = change for bright
-      // dark
-      cs = random(0, csv);
-      cb = random(0, cbv);
-      if(.7 < random(1)){ ch = mh; } else { ch = oh; }
-      ch = shift255(ch, random(-chv / 1.5, chv / 1.5));
-      o = 70;
-    }
-    else { // bright
-      cs = random(0, 130);
-      cb = random(128, 255);
-      if(.14 < random(1)){ ch = mh; } else { ch = oh; }
-      ch = shift255(ch, random(-chv, chv));
-      o = 60;
-    }
-    //if(.4 > random(1)){ cs = 0; }  // chance for monochrome
-    noStroke();
-    fill(ch, cs, cb, o);
+    
+  if(.5>random(1)){ch=oh;}else{ch=mh;}
+    ch = shift255(ch, random(-chv, chv));
+    
+    cs = random(180);
+    
+    fill(ch, cs, cb, 60);
   }
   
 
