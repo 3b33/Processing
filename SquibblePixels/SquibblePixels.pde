@@ -1,5 +1,4 @@
 // where are the creatures?
-// add monochrome pixels
 
 int bg1 = 70;
 int bg2 = 100;
@@ -11,7 +10,7 @@ void setup(){
   //  random(bg1,bg2)
   //);
   size(800,1000);
-  background(40);
+  background(00);
   rectMode(CENTER);
   noStroke();
   colorMode(HSB, 255);
@@ -39,7 +38,7 @@ int m, m2, m3;
 int xd;
 int yd;
 //int c = (int) random(600,1000);
-int c = 4000;
+int c = 1000;
 float chv = 60;
 float csv = 128; // color sat variability
 float cbv = 40;
@@ -78,17 +77,20 @@ void draw(){
   m3 = int((width - x3) / pos) * pos;
 
   // brightness cycle
-  cb = i % bi;
-  if(cb > bi / 2){cb = bi - cb;}
-  cb = cb / (bi / 285);  // boost brightness from 255
-  scb = cb;
-  for(int i = 0; i < 200; i += 20){
-    if(scb < i){ cb *= .9; }
+  //cb = i % bi;
+  //if(cb > bi / 2){cb = bi - cb;}
+  //cb = cb / (bi / 400);  // boost brightness from 255
+  //scb = cb;
+  //for(int i = 0; i < 200; i += 20){
+  //  if(scb < i){ cb *= .9; }
+  //}
+  if (i % c == 0) {  
+  if ( 0.7 > random(1) ) { cb = 0; } else { cb = 255; }
   }
   
-  if(i % c==0 || i == 0){ 
+  if (i % c==0 || i == 0){ 
     
-  if(.7>random(1)){ch=oh;}else{ch=mh;}
+  if (.7 > random(1) ) { ch=oh; } else { ch=mh; }
     ch = shift255(ch, random(-chv, chv));
     
     cs = random(180);
